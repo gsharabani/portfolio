@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gali Sharabani - Product Design Lead</title>
+<meta name="description" content="Product design leader with 15+ years of experience shaping digital products, from product strategy to execution.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+@font-face { font-family: "Founders Grotesk"; font-weight: 300; font-style: normal; font-display: swap; src: local("Founders Grotesk Light"), url("fonts/FoundersGrotesk-Light.otf") format("opentype"); }
+@font-face { font-family: "Founders Grotesk"; font-weight: 400; font-style: normal; font-display: swap; src: local("Founders Grotesk Regular"), url("fonts/FoundersGrotesk-Regular.otf") format("opentype"); }
+@font-face { font-family: "Founders Grotesk"; font-weight: 500; font-style: normal; font-display: swap; src: local("Founders Grotesk Medium"), url("fonts/FoundersGrotesk-Medium.otf") format("opentype"); }
+  :root {
+    --bg: #ffffff;
+    --ink: #111;
+    --muted: #55555a;
+    --line: #111;
+    --chip: #e9e9e7;
+    --shot: #ececea;
+    --gutter: 56px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#121212; --ink:#f2f2f0; --muted:#a3a3a8; --line:#f2f2f0; --chip:#26262a; --shot:#1e1e21; }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "Founders Grotesk", Inter, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-size: 18px; line-height: 1.5; -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 var(--gutter); }
+
+  /* nav */
+  nav { display: flex; justify-content: flex-end; gap: 32px; padding-top: 48px; font-size: 20px; }
+  nav a { text-decoration: none; padding-bottom: 2px; border-bottom: 1px solid transparent; }
+  nav a:hover, nav a:focus-visible { border-bottom-color: var(--ink); }
+
+  /* hero */
+  .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; padding: 112px 0 112px; }
+  h1 { font-weight: 400; font-size: 58px; line-height: 1.15; letter-spacing: -0.02em; margin: 0; }
+  .hero .intro p { font-size: 22px; line-height: 1.4; margin: 12px 0 0; letter-spacing: -0.01em; }
+  .hero .intro .kicker { font-size: 16px; font-weight: 500; color: var(--muted); margin: 8px 0 0; letter-spacing: 0; }
+
+  /* section headers */
+  h2.section { font-weight: 400; font-size: 40px; letter-spacing: -0.02em; margin: 0 0 28px; }
+  .rule { border: 0; border-top: 1px solid var(--line); margin: 0; }
+
+  /* project rows */
+  .project { display: grid; grid-template-columns: 5fr 7fr; gap: 64px; padding: 40px 0 44px; border-bottom: 1px solid color-mix(in srgb, var(--ink) 18%, transparent); }
+  .project:last-of-type { border-bottom: 0; }
+  .project h3 { font-size: 18px; font-weight: 500; margin: 0 0 18px; }
+  .project .desc { font-size: 18px; line-height: 1.45; margin: 0 0 18px; max-width: 34ch; }
+  .project .meta { margin: 0 0 4px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 40px; padding: 0; list-style: none; max-width: 380px; }
+  .tags li { background: var(--chip); border-radius: 4px; padding: 3px 10px; font-size: 16px; font-weight: 500; }
+  .desc.wide { max-width: 52ch; }
+  .initiatives { padding: 48px 0 8px; display: grid; grid-template-columns: 5fr 7fr; gap: 64px; align-items: start; }
+  .initiatives h2.sub { margin: 0; }
+  .initiatives .init-text .desc { margin-bottom: 18px; }
+  .initiatives .init-text .desc:last-child { margin-bottom: 0; }
+  .initiatives .desc.wide { max-width: none; }
+  h2.sub { font-weight: 400; font-size: 32px; letter-spacing: -0.02em; margin: 0 0 20px; }
+  .initiatives .lede { font-size: 18px; font-weight: 500; margin: 0 0 12px; }
+  .project h4.subhead { font-size: 18px; font-weight: 500; margin: 28px 0 18px; }
+  .flow { position: relative; }
+  .flow .screen { position: relative; border-radius: 2.5% / 3.9%; overflow: hidden; background: #fff; box-shadow: 0 1px 12px rgba(0,0,0,.08); }
+  .flow .screen img { display: block; width: 100%; height: auto; }
+  .flow .screen img.l-pop, .flow .screen img.l-drawer { position: absolute; inset: 0; opacity: 0; }
+  .flow .cursor { position: absolute; left: 70%; top: 80%; pointer-events: none; filter: drop-shadow(0 1px 2px rgba(0,0,0,.35)); }
+  @media (prefers-reduced-motion: no-preference) {
+    .flow .l-pop { animation: flow-pop 12s infinite; }
+    .flow .l-drawer { animation: flow-drawer 12s infinite; }
+    .flow .cursor { animation: flow-cursor 12s infinite; }
+  }
+  @media (prefers-reduced-motion: reduce) { .flow .cursor { display: none; } }
+  @keyframes flow-pop { 0%,11% { opacity: 0 } 14%,34% { opacity: 1 } 37%,100% { opacity: 0 } }
+  @keyframes flow-drawer { 0%,35% { opacity: 0 } 38%,72% { opacity: 1 } 76%,100% { opacity: 0 } }
+  @keyframes flow-cursor {
+    0%   { left: 70%; top: 82%; transform: scale(1) }
+    10%  { left: 28%; top: 31%; transform: scale(1) }
+    22%  { left: 28%; top: 31%; transform: scale(1) }
+    30%  { left: 17%; top: 63%; transform: scale(1) }
+    33%  { left: 17%; top: 63%; transform: scale(1) }
+    34%  { left: 17%; top: 63%; transform: scale(.82) }
+    35.5%{ left: 17%; top: 63%; transform: scale(1) }
+    52%  { left: 96%; top: 6%; transform: scale(1) }
+    69%  { left: 96%; top: 6%; transform: scale(1) }
+    70.5%{ left: 96%; top: 6%; transform: scale(.82) }
+    72%  { left: 96%; top: 6%; transform: scale(1) }
+    82%  { left: 62%; top: 86%; transform: scale(1) }
+    100% { left: 70%; top: 82%; transform: scale(1) }
+  }
+  .more { text-decoration: underline; text-underline-offset: 3px; }
+  .shot { border-radius: 16px; background: var(--shot); overflow: hidden; aspect-ratio: 16 / 10; box-shadow: 0 1px 12px rgba(0,0,0,.08); position: relative; display: grid; place-items: center; }
+  .shot img { width: 100%; height: 100%; object-fit: cover; display: block; position: absolute; inset: 0; }
+  .shot span { color: var(--muted); font-size: 16px; padding: 16px; text-align: center; }
+
+  /* CV */
+  [hidden] { display: none !important; }
+  nav a[aria-current="page"] { border-bottom-color: var(--ink); }
+  #cv { padding-top: 112px; }
+  .cv-intro { font-size: 27px; line-height: 1.3; letter-spacing: -0.01em; max-width: 40ch; margin: 0 0 56px; }
+  .cv-row { display: grid; grid-template-columns: 5fr 7fr; gap: 64px; padding: 28px 0; border-top: 1px solid color-mix(in srgb, var(--ink) 18%, transparent); }
+  .cv-row > h4 { margin: 0; font-size: 16px; font-weight: 500; letter-spacing: .02em; text-transform: none; color: var(--muted); }
+  .job { margin: 0 0 32px; }
+  .job:last-child { margin-bottom: 0; }
+  .job-head { display: flex; justify-content: space-between; gap: 16px; font-weight: 500; }
+  .job-head .yrs { font-weight: 400; color: var(--muted); white-space: nowrap; }
+  .job .role { margin: 0 0 8px; color: var(--muted); }
+  .job ul { margin: 8px 0 0; padding-left: 18px; }
+  .job li { margin: 0 0 6px; max-width: 62ch; }
+  .plain p { margin: 0 0 6px; }
+  .plain .sub { color: var(--muted); }
+
+  footer { margin-top: 96px; border-top: 1px solid var(--line); padding: 40px 0 64px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; font-weight: 500; }
+  footer a { text-underline-offset: 3px; }
+
+  /* tablet / mobile */
+  @media (max-width: 860px) {
+    :root { --gutter: 24px; }
+    nav { padding-top: 28px; font-size: 18px; }
+    .hero { grid-template-columns: 1fr; gap: 24px; padding: 64px 0; }
+    h1 { font-size: 45px; }
+    .hero .intro p { font-size: 20px; margin: 12px 0 0; }
+    .hero .intro .kicker { font-size: 16px; margin: 0; }
+    h2.section { font-size: 34px; }
+    .project, .cv-row, .initiatives { grid-template-columns: 1fr; gap: 24px; }
+    .project .desc { max-width: none; }
+    .tags { margin-bottom: 20px; }
+    .cv-intro { font-size: 22px; }
+    #cv { padding-top: 64px; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav aria-label="Primary">
+    <a href="#work" id="tab-work" aria-current="page">Work</a>
+    <a href="#cv" id="tab-cv">CV</a>
+  </nav>
+
+  <div id="view-work">
+  <header class="hero">
+    <h1>Hello, I’m<br>Gali Sharabani.</h1>
+    <div class="intro"><p class="kicker">Product Design Lead</p><p>Product design leader with 15+ years of experience shaping digital products, from product strategy to execution. Combines systems thinking, deep UX expertise, and design leadership to solve complex problems and translate business needs into clear, intuitive product experiences. Experienced across startups, enterprise organizations, and consulting environments.</p></div>
+  </header>
+
+  <main>
+    <section id="work" aria-labelledby="work-title">
+      <h2 class="section" id="work-title">Work</h2>
+      <hr class="rule">
+
+      <article class="project">
+        <div>
+          <h3>Bringing Healthee’s vision to life through its flagship product</h3>
+          <p class="desc wide">At the core of Healthee’s business, the decision-support tool turns complex health benefits decisions into a guided, personalized experience. Its recommendation engine analyzes thousands of data points to help employees identify and evaluate plans tailored to their needs.</p>
+          <p class="desc wide">As Product Design Lead, I shaped the evolution of this flagship product during a period of growth - expanding its capabilities beyond medical plan selection, introducing AI-powered guidance, and making an increasingly broad range of benefits easier to understand and navigate.</p>
+
+        </div>
+        <div class="shot" style="aspect-ratio: 2000 / 1793">
+          <span>Add screenshot: assets/decision-support.png</span>
+          <img src="assets/decision-support.png" alt="Healthee decision-support tool, plan recommendation screen" onerror="this.remove()">
+        </div>
+      </article>
+
+      <hr class="rule">
+      <div class="initiatives">
+        <h2 class="sub">Expanding the product’s value</h2>
+        <div class="init-text">
+        <p class="desc wide">As Healthee evolved, the opportunity was to deliver value across a broader range of employee benefits and healthcare needs. The strategy focused on strengthening the core experience while exploring new capabilities that could improve engagement, demonstrate healthcare savings, support Sales, and unlock future growth.</p>
+        <p class="desc wide">I worked on several key product initiatives that brought this strategy to life, including new experiences designed to help employees better understand and navigate their benefits.</p>
+        </div>
+      </div>
+      <article class="project">
+        <div>
+          <h3><a href="hsa.html" style="text-decoration:none">Driving HDHP/HSA adoption</a></h3>
+          <p class="desc">Helping employees see beyond lower premiums and higher deductibles to understand the potential value of an HSA - through a more informed, intuitive health plan selection experience.</p>
+          <a class="more" href="hsa.html">Read more ↗</a>
+        </div>
+        <a href="hsa.html" aria-label="Open Driving HDHP/HSA adoption case study" style="display:block;text-decoration:none"><div class="shot" style="aspect-ratio: 2000 / 1422">
+          <span>Add screenshot: assets/hsa.png</span>
+          <img src="assets/hsa.png" alt="HSA experience" onerror="this.remove()">
+        </div></a>
+      </article>
+      <article class="project">
+        <div>
+          <h3><a href="why-this-plan.html" style="text-decoration:none">Why this plan - AI-powered recommendations</a></h3>
+          <p class="desc">Introduced an AI-powered explanation layer to Healthee’s decision-support tool, translating complex plan recommendations into personalized guidance that helps employees understand why a plan fits their needs.</p>
+          <a class="more" href="why-this-plan.html">Read more ↗</a>
+        </div>
+        <a href="why-this-plan.html" aria-label="Open Why this plan case study" style="display:block;text-decoration:none">
+          <div class="flow" role="img" aria-label="Animation: hovering the recommended plan opens a short explanation, then a full explanation panel opens and closes">
+            <div class="screen">
+              <img src="assets/why-this-plan/flow-base.webp" alt="" width="2000" height="1282">
+              <img class="l-pop" src="assets/why-this-plan/flow-popover.webp" alt="" width="2000" height="1282">
+              <img class="l-drawer" src="assets/why-this-plan/flow-drawer.webp" alt="" width="2000" height="1282">
+              <svg class="cursor" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 2l15 9-6.5 1.6L9.4 19z" fill="#111" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            </div>
+          </div></a>
+      </article>
+      <article class="project">
+        <div>
+          <h3><a href="voluntary-benefits.html" style="text-decoration:none">Voluntary benefits</a></h3>
+          <p class="desc">Turning overlooked benefits into clear, personalized choices</p>
+          <a class="more" href="voluntary-benefits.html">Read more ↗</a>
+        </div>
+        <a href="voluntary-benefits.html" aria-label="Open Voluntary benefits case study" style="display:block;text-decoration:none"><div class="shot" style="aspect-ratio: 1536 / 1044">
+          <span>Add screenshot: assets/voluntary-benefits.png</span>
+          <img src="assets/voluntary-benefits.png" alt="Voluntary benefits step: benefit types on the left, life insurance plan on the right" onerror="this.remove()">
+        </div></a>
+      </article>
+      <hr class="rule">
+    </section>
+  </main>
+  </div>
+
+  <div id="view-cv" hidden>
+  <main>
+    <section id="cv" aria-labelledby="cv-title">
+      <h2 class="section" id="cv-title">CV</h2>
+      <p class="cv-intro">Experienced across startups, enterprise organizations, and consulting environments.</p>
+
+      <div class="cv-row">
+        <h4>Experience</h4>
+        <div>
+          <div class="job">
+            <div class="job-head"><span>Healthee</span><span class="yrs">2024 – 2026</span></div>
+            <p class="role">Product design lead</p>
+            <ul>
+              <li>Owned the end-to-end user experience for Healthee’s decision-support tool, a core growth product, partnering with Product and Engineering to evolve the experience and deliver on user and business goals.</li>
+              <li>Drove complex product initiatives from discovery and definition through design and launch, including major redesigns, new features, and expansion into additional employee benefit experiences.</li>
+              <li>Applied user research and product performance insights to identify opportunities, validate design solutions, and continuously improve key product experiences.</li>
+              <li>Partnered with Sales to translate the product roadmap into tailored, interactive demos for prospective customers, using AI-powered, code-based prototypes to bring planned capabilities to life.</li>
+              <li>Collaborated with Product and Engineering leadership on product direction, priorities, and execution, translating business objectives and user needs into effective product experiences.</li>
+              <li>Provided design leadership across the team, driving design quality, leading design reviews, guiding designers through complex challenges, and owning critical cross-team initiatives.</li>
+            </ul>
+          </div>
+          <div class="job">
+            <div class="job-head"><span>Designit</span><span class="yrs">2017 – 2024</span></div>
+            <p class="role">Director of product design (grew from product designer)</p>
+            <ul>
+              <li>Managed and mentored up to 15 product designers while staying hands-on in strategic client work.</li>
+              <li>Oversaw multiple enterprise engagements at once, from discovery and strategy to design and delivery.</li>
+              <li>Worked across finance, insurance, automotive, retail and technology, with clients including Bank Leumi, General Motors, Menora, Shufersal, DavidShield and Cyberint.</li>
+              <li>Contributed to business development, recruiting and the growth of the product design practice.</li>
+            </ul>
+          </div>
+          <div class="job">
+            <div class="job-head"><span>BRIO Interaction Design</span><span class="yrs">2014 – 2017</span></div>
+            <p class="role">Digital product &amp; UX designer</p>
+            <ul>
+              <li>Designed web and mobile products, from strategy and UX to visual design, prototyping and implementation, working closely with product and engineering.</li>
+            </ul>
+          </div>
+          <div class="job">
+            <div class="job-head"><span>Earlier</span></div>
+            <p class="role">Freelance graphic &amp; web designer, UX/UI (2013-2017) · Reshet TV, UI designer (2013-2014) · Long Tall Sally, graphic design intern (2012)</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv-row">
+        <h4>Teaching</h4>
+        <div class="plain">
+          <p>Shenkar College of Engineering and Design</p>
+          <p class="sub">Lecturer, product design · Visual Communication Department</p>
+        </div>
+      </div>
+
+      <div class="cv-row">
+        <h4>Education</h4>
+        <div class="plain">
+          <p>Shenkar College of Engineering and Design · 2009 – 2013</p>
+          <p class="sub">B.Des in Visual Communication, major in Interaction Design</p>
+        </div>
+      </div>
+
+      <div class="cv-row">
+        <h4>Expertise</h4>
+        <ul class="tags" style="margin:0;max-width:none" aria-label="Expertise">
+          <li>Product design</li><li>Product strategy</li><li>Design leadership</li><li>People mentoring</li>
+          <li>Design systems</li><li>UX architecture</li><li>UX writing</li><li>AI-assisted design workflows</li>
+        </ul>
+      </div>
+
+      <div class="cv-row">
+        <h4>Languages</h4>
+        <div class="plain"><p>Hebrew - native · English - fluent</p></div>
+      </div>
+    </section>
+  </main>
+  </div>
+
+  <footer>
+    <span>Let’s talk</span>
+    <span><a href="mailto:g.sharabani@gmail.com">g.sharabani@gmail.com</a> · <a href="https://www.linkedin.com/in/gali-sharabani-26747218/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></span>
+  </footer>
+</div>
+<script>
+  (function () {
+    var views = { work: document.getElementById('view-work'), cv: document.getElementById('view-cv') };
+    var tabs = { work: document.getElementById('tab-work'), cv: document.getElementById('tab-cv') };
+    function show(key) {
+      for (var k in views) {
+        views[k].hidden = k !== key;
+        if (k === key) tabs[k].setAttribute('aria-current', 'page'); else tabs[k].removeAttribute('aria-current');
+      }
+      window.scrollTo(0, 0);
+    }
+    Object.keys(tabs).forEach(function (k) {
+      tabs[k].addEventListener('click', function (e) {
+        e.preventDefault();
+        show(k);
+        try { history.replaceState(null, '', '#' + k); } catch (err) {}
+      });
+    });
+    window.addEventListener('hashchange', function () { show(location.hash === '#cv' ? 'cv' : 'work'); });
+    show(location.hash === '#cv' ? 'cv' : 'work');
+  })();
+</script>
+</body>
+</html>
