@@ -29,7 +29,7 @@
   body {
     margin: 0; background: var(--bg); color: var(--ink);
     font-family: "Founders Grotesk", Inter, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
-    font-size: 18px; line-height: 1.5; -webkit-font-smoothing: antialiased;
+    font-size: calc(18px + 2pt); line-height: 1.5; -webkit-font-smoothing: antialiased;
   }
   a { color: inherit; }
   .wrap { max-width: 1200px; margin: 0 auto; padding: 0 var(--gutter); }
@@ -52,8 +52,8 @@
   /* project rows */
   .project { display: grid; grid-template-columns: 5fr 7fr; gap: 64px; padding: 40px 0 44px; border-bottom: 1px solid color-mix(in srgb, var(--ink) 18%, transparent); }
   .project:last-of-type { border-bottom: 0; }
-  .project h3 { font-size: 18px; font-weight: 500; margin: 0 0 18px; }
-  .project .desc { font-size: 18px; line-height: 1.45; margin: 0 0 18px; max-width: 34ch; }
+  .project h3 { font-size: calc(18px + 2pt); font-weight: 500; margin: 0 0 18px; }
+  .project .desc { font-size: calc(18px + 2pt); line-height: 1.45; margin: 0 0 18px; max-width: 34ch; }
   .project .meta { margin: 0 0 4px; }
   .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 40px; padding: 0; list-style: none; max-width: 380px; }
   .tags li { background: var(--chip); border-radius: 4px; padding: 3px 10px; font-size: 16px; font-weight: 500; }
@@ -64,8 +64,8 @@
   .initiatives .init-text .desc:last-child { margin-bottom: 0; }
   .initiatives .desc.wide { max-width: none; }
   h2.sub { font-weight: 400; font-size: 32px; letter-spacing: -0.02em; margin: 0 0 20px; }
-  .initiatives .lede { font-size: 18px; font-weight: 500; margin: 0 0 12px; }
-  .project h4.subhead { font-size: 18px; font-weight: 500; margin: 28px 0 18px; }
+  .initiatives .lede { font-size: calc(18px + 2pt); font-weight: 500; margin: 0 0 12px; }
+  .project h4.subhead { font-size: calc(18px + 2pt); font-weight: 500; margin: 28px 0 18px; }
   .flow { position: relative; }
   .flow .screen { position: relative; border-radius: 2.5% / 3.9%; overflow: hidden; background: #fff; box-shadow: 0 1px 12px rgba(0,0,0,.08); }
   .flow .screen img { display: block; width: 100%; height: auto; }
@@ -94,6 +94,7 @@
     82%  { left: 62%; top: 86%; transform: scale(1) }
     100% { left: 70%; top: 82%; transform: scale(1) }
   }
+  .clients { margin: 18px 0 0; color: var(--muted); }
   .more { text-decoration: underline; text-underline-offset: 3px; }
   .shot { border-radius: 16px; background: var(--shot); overflow: hidden; aspect-ratio: 16 / 10; box-shadow: 0 1px 12px rgba(0,0,0,.08); position: relative; display: grid; place-items: center; }
   .shot img { width: 100%; height: 100%; object-fit: cover; display: block; position: absolute; inset: 0; }
@@ -104,12 +105,15 @@
   nav a[aria-current="page"] { border-bottom-color: var(--ink); }
   #cv { padding-top: 112px; }
   .cv-intro { font-size: 27px; line-height: 1.3; letter-spacing: -0.01em; max-width: 40ch; margin: 0 0 56px; }
-  .cv-row { display: grid; grid-template-columns: 5fr 7fr; gap: 64px; padding: 28px 0; border-top: 1px solid color-mix(in srgb, var(--ink) 18%, transparent); }
+  .cv-row { display: grid; grid-template-columns: 200px 1fr; gap: 24px; padding: 28px 0; border-top: 1px solid color-mix(in srgb, var(--ink) 18%, transparent); }
   .cv-row > h4 { margin: 0; font-size: 16px; font-weight: 500; letter-spacing: .02em; text-transform: none; color: var(--muted); }
-  .job { margin: 0 0 32px; }
-  .job:last-child { margin-bottom: 0; }
-  .job-head { display: flex; justify-content: space-between; gap: 16px; font-weight: 500; }
-  .job-head .yrs { font-weight: 400; color: var(--muted); white-space: nowrap; }
+  .cv-exp { grid-template-columns: 1fr; gap: 28px; }
+  .job { display: grid; grid-template-columns: 200px 1fr; gap: 24px; margin: 0 0 32px; }
+  .job.tight { margin-bottom: 8px; }
+  .job.sub { margin-bottom: 20px; }
+  .yrs-col { margin: 0; font-style: italic; color: var(--muted); font-size: 14px; line-height: 1.5; padding-top: 2px; }
+  .company { margin: 0; font-weight: 500; }
+  .role-title { margin: 0; font-weight: 500; }
   .job .role { margin: 0 0 8px; color: var(--muted); }
   .job ul { margin: 8px 0 0; padding-left: 18px; }
   .job li { margin: 0 0 6px; max-width: 62ch; }
@@ -129,12 +133,127 @@
     .hero .intro .kicker { font-size: 16px; margin: 0; }
     h2.section { font-size: 34px; }
     .project, .cv-row, .initiatives { grid-template-columns: 1fr; gap: 24px; }
+    .job { grid-template-columns: 1fr; gap: 4px; }
     .project .desc { max-width: none; }
     .tags { margin-bottom: 20px; }
     .cv-intro { font-size: 22px; }
     #cv { padding-top: 64px; }
   }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* ===== Design pass: type scale, hierarchy, spacing (8pt rhythm) ===== */
+:root {
+  --ink: #0e0e0f; --muted: #6b6b71; --hair: rgba(14,14,15,.12); --chip: #f1f1ef;
+  --fs-body: calc(18px + 2pt);
+  --shadow: 0 2px 24px rgba(0,0,0,.07);
+}
+body { font-size: var(--fs-body); line-height: 1.45; letter-spacing: -0.005em; font-feature-settings: "kern", "liga"; text-rendering: optimizeLegibility; }
+
+nav { padding-top: 40px; gap: 32px; font-size: 18px; font-weight: 500; letter-spacing: 0; }
+nav a { padding-bottom: 3px; }
+
+/* hero */
+.hero { grid-template-columns: 5fr 7fr; gap: 64px; padding: 128px 0 112px; }
+h1 { font-size: clamp(48px, 6.2vw, 80px); line-height: 1.02; letter-spacing: -0.035em; font-weight: 400; }
+.hero .intro .kicker { font-size: 14px; letter-spacing: .02em; margin: 6px 0 0; }
+.hero .intro p { font-size: 26px; line-height: 1.28; letter-spacing: -0.015em; margin: 14px 0 0; max-width: 34ch; }
+
+/* section titles */
+h2.section { font-size: 48px; line-height: 1.05; letter-spacing: -0.03em; margin: 0 0 32px; }
+h2.sub { font-size: 40px; line-height: 1.08; letter-spacing: -0.03em; margin: 0; }
+.rule { border-top-color: var(--ink); }
+
+/* projects */
+.project { gap: 80px; padding: 64px 0; border-bottom: 1px solid var(--hair); }
+.project h3 { font-size: 30px; line-height: 1.12; letter-spacing: -0.025em; font-weight: 500; margin: 0 0 20px; }
+.project h3 a { text-decoration: none; }
+.project .desc { font-size: var(--fs-body); line-height: 1.45; margin: 0 0 20px; max-width: 36ch; }
+.desc.wide { max-width: 56ch; }
+.project h4.subhead { font-size: 22px; line-height: 1.2; letter-spacing: -0.015em; margin: 36px 0 16px; }
+.more { display: inline-block; margin-top: 12px; font-weight: 500; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+.tags { gap: 8px; margin: 24px 0 0; }
+.tags li { font-size: 14px; padding: 5px 12px; border-radius: 999px; background: var(--chip); }
+.initiatives { padding: 72px 0 8px; gap: 80px; }
+.initiatives .init-text .desc { margin-bottom: 20px; }
+.shot { box-shadow: var(--shadow); }
+.shot span { font-size: 14px; }
+
+/* CV */
+#cv { padding-top: 128px; }
+.cv-row { gap: 24px; padding: 32px 0; border-top: 1px solid var(--hair); }
+.cv-row > h4 { font-size: 14px; letter-spacing: .02em; font-weight: 500; padding-top: 4px; }
+.cv-exp { gap: 32px; }
+.job { grid-template-columns: 200px 1fr; margin: 0 0 40px; }
+.job.tight { margin-bottom: 8px; }
+.job.sub { margin-bottom: 24px; }
+.yrs-col { font-size: 14px; letter-spacing: .01em; padding-top: 5px; }
+.company { font-size: 24px; line-height: 1.2; letter-spacing: -0.015em; font-weight: 500; }
+.role-title { font-size: var(--fs-body); font-weight: 500; }
+.job .role { margin: 4px 0 12px; }
+.job ul { margin: 12px 0 0; padding-left: 20px; }
+.job li { margin: 0 0 10px; max-width: 60ch; line-height: 1.45; }
+.clients { margin: 20px 0 0; font-size: 18px; }
+.plain p { margin: 0 0 4px; }
+
+footer { margin-top: 128px; padding: 40px 0 72px; font-weight: 500; }
+
+@media (max-width: 860px) {
+  :root { --fs-body: 18px; }
+  nav { padding-top: 24px; font-size: 16px; }
+  .hero { grid-template-columns: 1fr; gap: 24px; padding: 72px 0 56px; }
+  h1 { font-size: 48px; }
+  .hero .intro p { font-size: 20px; max-width: none; }
+  h2.section { font-size: 36px; }
+  h2.sub { font-size: 32px; }
+  .project { grid-template-columns: 1fr; gap: 28px; padding: 40px 0; }
+  .project h3 { font-size: 26px; }
+  .project .desc { max-width: none; }
+  .initiatives { grid-template-columns: 1fr; gap: 20px; padding-top: 48px; }
+  #cv { padding-top: 72px; }
+  .cv-row { grid-template-columns: 1fr; gap: 12px; padding: 24px 0; }
+  .job { grid-template-columns: 1fr; gap: 4px; margin-bottom: 32px; }
+  .company { font-size: 22px; }
+  footer { margin-top: 72px; }
+}
+
+/* ===== Scale pass: calmer sizes ===== */
+:root { --fs-body: 19px; }
+nav { font-size: 16px; padding-top: 32px; }
+.hero { padding: 96px 0 80px; }
+h1 { font-size: clamp(40px, 4.8vw, 62px); }
+.hero .intro p { font-size: 22px; }
+h2.section { font-size: 36px; }
+h2.sub { font-size: 30px; }
+.project { padding: 56px 0; }
+.project h3 { font-size: 24px; }
+.project h4.subhead { font-size: 20px; margin: 28px 0 12px; }
+.tags li { font-size: 13px; padding: 4px 10px; }
+.cv-row > h4 { font-size: 13px; }
+.yrs-col { font-size: 13px; }
+.company { font-size: 20px; }
+.clients { font-size: 16px; }
+.initiatives { padding-top: 56px; }
+#cv { padding-top: 96px; }
+footer { margin-top: 96px; }
+@media (max-width: 860px) {
+  :root { --fs-body: 17px; }
+  nav { font-size: 15px; }
+  .hero { padding: 56px 0 40px; }
+  h1 { font-size: 40px; }
+  .hero .intro p { font-size: 19px; }
+  h2.section { font-size: 30px; }
+  h2.sub { font-size: 26px; }
+  .project { padding: 32px 0; }
+  .project h3 { font-size: 22px; }
+  .company { font-size: 19px; }
+  #cv { padding-top: 56px; }
+}
+
+/* CV: larger labels and years, role line in black */
+.yrs-col { font-size: 16px; padding-top: 4px; }
+.cv-row > h4 { font-size: 17px; padding-top: 3px; }
+.job .role { color: var(--ink); }
+@media (max-width: 860px) { .yrs-col { font-size: 15px; } .cv-row > h4 { font-size: 16px; } }
 </style>
 </head>
 <body>
@@ -226,41 +345,87 @@
       <h2 class="section" id="cv-title">CV</h2>
       <p class="cv-intro">Experienced across startups, enterprise organizations, and consulting environments.</p>
 
-      <div class="cv-row">
+      <div class="cv-row cv-exp">
         <h4>Experience</h4>
-        <div>
+        <div class="exp">
           <div class="job">
-            <div class="job-head"><span>Healthee</span><span class="yrs">2024 – 2026</span></div>
-            <p class="role">Product design lead</p>
-            <ul>
-              <li>Owned the end-to-end user experience for Healthee’s decision-support tool, a core growth product, partnering with Product and Engineering to evolve the experience and deliver on user and business goals.</li>
-              <li>Drove complex product initiatives from discovery and definition through design and launch, including major redesigns, new features, and expansion into additional employee benefit experiences.</li>
-              <li>Applied user research and product performance insights to identify opportunities, validate design solutions, and continuously improve key product experiences.</li>
-              <li>Partnered with Sales to translate the product roadmap into tailored, interactive demos for prospective customers, using AI-powered, code-based prototypes to bring planned capabilities to life.</li>
-              <li>Collaborated with Product and Engineering leadership on product direction, priorities, and execution, translating business objectives and user needs into effective product experiences.</li>
-              <li>Provided design leadership across the team, driving design quality, leading design reviews, guiding designers through complex challenges, and owning critical cross-team initiatives.</li>
-            </ul>
+            <p class="yrs-col">2024 – 2026</p>
+            <div class="job-main">
+              <p class="company">Healthee</p>
+              <p class="role">Product design lead</p>
+              <ul>
+                <li>Owned the end-to-end user experience for Healthee’s decision-support tool, a core growth product, partnering with Product and Engineering to evolve the experience and deliver on user and business goals.</li>
+                <li>Drove complex product initiatives from discovery and definition through design and launch, including major redesigns, new features, and expansion into additional employee benefit experiences.</li>
+                <li>Applied user research and product performance insights to identify opportunities, validate design solutions, and continuously improve key product experiences.</li>
+                <li>Partnered with Sales to translate the product roadmap into tailored, interactive demos for prospective customers, using AI-powered, code-based prototypes to bring planned capabilities to life.</li>
+                <li>Collaborated with Product and Engineering leadership on product direction, priorities, and execution, translating business objectives and user needs into effective product experiences.</li>
+                <li>Provided design leadership across the team, driving design quality, leading design reviews, guiding designers through complex challenges, and owning critical cross-team initiatives.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="job tight">
+            <p class="yrs-col">Dec 2017 – Sep 2024</p>
+            <div class="job-main"><p class="company">Designit</p></div>
+          </div>
+          <div class="job sub">
+            <p class="yrs-col">Dec 2021 – Sep 2024</p>
+            <div class="job-main">
+              <p class="role-title">Director of product design</p>
+              <ul>
+                <li>Co-managed a multidisciplinary design team of approximately 20 designers alongside two other Directors, sharing leadership responsibilities and guiding Design Leads across the team.</li>
+                <li>Led strategic company initiatives and contributed to business growth through sales, business development, and client relationships.</li>
+                <li>Contributed to recruiting and the continued growth of the design practice, while remaining hands-on across strategic client engagements.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="job sub">
+            <p class="yrs-col">Jun 2020 – Dec 2021</p>
+            <div class="job-main">
+              <p class="role-title">Lead designer</p>
+              <ul>
+                <li>Led complex enterprise engagements from discovery and product strategy through design and delivery.</li>
+                <li>Took on broader project leadership and people responsibilities, guiding designers and coordinating project execution.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="job sub">
+            <p class="yrs-col">Jun 2018 – May 2020</p>
+            <div class="job-main">
+              <p class="role-title">Senior designer &amp; product owner</p>
+              <ul>
+                <li>Led design execution, prioritized tasks, and coordinated work across multidisciplinary teams.</li>
+                <li>Aligned design activities with project goals and delivery needs.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="job sub">
+            <p class="yrs-col">Dec 2017 – Jun 2018</p>
+            <div class="job-main">
+              <p class="role-title">Product designer</p>
+              <ul>
+                <li>Designed digital products across client engagements, contributing from UX through visual design and delivery.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="job sub">
+            <p class="yrs-col"></p>
+            <div class="job-main"><p class="clients">Selected clients: Bank Leumi, General Motors, Menora, Shufersal, DavidShield, Cyberint.</p></div>
           </div>
           <div class="job">
-            <div class="job-head"><span>Designit</span><span class="yrs">2017 – 2024</span></div>
-            <p class="role">Director of product design (grew from product designer)</p>
-            <ul>
-              <li>Managed and mentored up to 15 product designers while staying hands-on in strategic client work.</li>
-              <li>Oversaw multiple enterprise engagements at once, from discovery and strategy to design and delivery.</li>
-              <li>Worked across finance, insurance, automotive, retail and technology, with clients including Bank Leumi, General Motors, Menora, Shufersal, DavidShield and Cyberint.</li>
-              <li>Contributed to business development, recruiting and the growth of the product design practice.</li>
-            </ul>
+            <p class="yrs-col">2014 – 2017</p>
+            <div class="job-main">
+              <p class="company">BRIO Interaction Design</p>
+              <p class="role">Digital product &amp; UX designer</p>
+              <ul>
+                <li>Designed web and mobile products, from strategy and UX to visual design, prototyping and implementation, working closely with product and engineering.</li>
+              </ul>
+            </div>
           </div>
           <div class="job">
-            <div class="job-head"><span>BRIO Interaction Design</span><span class="yrs">2014 – 2017</span></div>
-            <p class="role">Digital product &amp; UX designer</p>
-            <ul>
-              <li>Designed web and mobile products, from strategy and UX to visual design, prototyping and implementation, working closely with product and engineering.</li>
-            </ul>
-          </div>
-          <div class="job">
-            <div class="job-head"><span>Earlier</span></div>
-            <p class="role">Freelance graphic &amp; web designer, UX/UI (2013-2017) · Reshet TV, UI designer (2013-2014) · Long Tall Sally, graphic design intern (2012)</p>
+            <p class="yrs-col">Earlier</p>
+            <div class="job-main">
+              <p class="role">Freelance graphic &amp; web designer, UX/UI (2013-2017) · Reshet TV, UI designer (2013-2014) · Long Tall Sally, graphic design intern (2012)</p>
+            </div>
           </div>
         </div>
       </div>
@@ -284,8 +449,7 @@
       <div class="cv-row">
         <h4>Expertise</h4>
         <ul class="tags" style="margin:0;max-width:none" aria-label="Expertise">
-          <li>Product design</li><li>Product strategy</li><li>Design leadership</li><li>People mentoring</li>
-          <li>Design systems</li><li>UX architecture</li><li>UX writing</li><li>AI-assisted design workflows</li>
+          <li>Product design leadership</li><li>Product strategy</li><li>Research &amp; discovery</li><li>Team development</li><li>Complex UX &amp; information architecture</li><li>Design systems</li><li>AI-assisted prototyping</li>
         </ul>
       </div>
 

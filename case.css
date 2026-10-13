@@ -11,7 +11,7 @@
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Founders Grotesk", Inter, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif; font-size: 18px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Founders Grotesk", Inter, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif; font-size: calc(18px + 2pt); line-height: 1.5; -webkit-font-smoothing: antialiased; }
 a { color: inherit; }
 .wrap { max-width: 1200px; margin: 0 auto; padding: 0 var(--gutter); }
 mark { background: var(--hl); color: inherit; padding: 0 2px; }
@@ -201,4 +201,72 @@ h2 { font-weight: 400; font-size: 36px; line-height: 1.2; letter-spacing: -0.02e
   0%, 10%   { transform: translateY(0); }
   55%, 68%  { transform: translateY(-73.37%); }
   92%, 100% { transform: translateY(0); }
+}
+
+/* ===== Design pass: type scale, hierarchy, spacing (8pt rhythm) ===== */
+:root {
+  --ink: #0e0e0f; --muted: #6b6b71; --hair: rgba(14,14,15,.12); --chip: #f1f1ef;
+  --fs-body: calc(18px + 2pt);
+  --shadow: 0 2px 24px rgba(0,0,0,.07);
+}
+body { font-size: var(--fs-body); line-height: 1.45; letter-spacing: -0.005em; font-feature-settings: "kern", "liga"; text-rendering: optimizeLegibility; }
+
+.top { padding-top: 40px; font-size: 16px; }
+.top nav { gap: 32px; font-size: 18px; font-weight: 500; }
+.crumbs { letter-spacing: 0; }
+
+.shot { box-shadow: var(--shadow); }
+.shot.framed { box-shadow: var(--shadow); }
+.shot span { font-size: 14px; }
+
+/* grid rhythm */
+.block { gap: 80px; padding: 64px 0; }
+
+/* type hierarchy: h1 > lead > h2 > body > labels */
+h1 { font-size: clamp(40px, 4.8vw, 64px); line-height: 1.04; letter-spacing: -0.035em; font-weight: 400; }
+.lead-in { font-size: 26px; line-height: 1.28; letter-spacing: -0.015em; max-width: 24ch; margin: 24px 0 0; }
+.step h2, #ch, #ma, #ub, #im { font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 500; max-width: 22ch; }
+#ub { max-width: none; }
+.step h2 { margin: 0 0 16px; }
+.step .num { font-size: 14px; font-weight: 500; letter-spacing: .04em; color: var(--muted); margin: 0 0 16px; }
+.body p { margin: 0 0 18px; max-width: 56ch; line-height: 1.45; }
+.body p:last-child { margin-bottom: 0; }
+.body li { margin: 0 0 10px; max-width: 56ch; }
+.meta, .caption, .why { font-size: 14px; }
+#im + .body strong, #im + .body p { font-size: var(--fs-body); }
+.step .body p { margin-bottom: 16px; }
+
+/* closing / pager */
+.pager { border-top: 1px solid var(--hair); padding: 40px 0 72px; font-weight: 500; font-size: 18px; margin-top: 32px; }
+.closing { border-top: 1px solid var(--hair); }
+
+@media (max-width: 860px) {
+  :root { --fs-body: 18px; }
+  .top { padding-top: 24px; font-size: 14px; }
+  .top nav { font-size: 16px; gap: 20px; }
+  .block { grid-template-columns: 1fr; gap: 24px; padding: 40px 0; }
+  h1 { font-size: 40px; }
+  .lead-in { font-size: 21px; max-width: none; margin-top: 16px; }
+  .step h2, #ch, #ma, #ub, #im { font-size: 22px; max-width: none; }
+}
+
+/* ===== Scale pass: calmer sizes ===== */
+:root { --fs-body: 19px; }
+.top { font-size: 15px; padding-top: 32px; }
+.top nav { font-size: 16px; }
+.block { gap: 64px; padding: 48px 0; }
+h1 { font-size: clamp(34px, 3.8vw, 50px); }
+.lead-in { font-size: 22px; margin-top: 18px; }
+.step h2, #ch, #ma, #ub, #im { font-size: 22px; }
+.step .num { font-size: 13px; }
+.meta, .caption, .why { font-size: 13px; }
+.pager { font-size: 16px; padding: 32px 0 56px; }
+@media (max-width: 860px) {
+  :root { --fs-body: 17px; }
+  .top { font-size: 13px; }
+  .top nav { font-size: 15px; }
+  .block { padding: 32px 0; gap: 20px; }
+  h1 { font-size: 34px; }
+  .lead-in { font-size: 19px; }
+  .step h2, #ch, #ma, #ub, #im { font-size: 20px; }
 }
