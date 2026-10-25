@@ -1,0 +1,66 @@
+/* ===== Motion system: restrained, fast, respects reduced-motion ===== */
+@view-transition { navigation: auto; }
+:root { --ease: cubic-bezier(.2, .7, .2, 1); }
+
+/* nav + breadcrumb: underline that slides in */
+nav a, .top nav a {
+  border-bottom: 0 !important;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  padding-bottom: 3px;
+  transition: background-size .45s var(--ease);
+}
+nav a:hover, nav a:focus-visible, nav a[aria-current="page"], .top nav a:hover { background-size: 100% 1px; }
+.crumbs a { transition: color .3s var(--ease); }
+
+/* links */
+.more { transition: transform .4s var(--ease); }
+.project:hover .more { transform: translateX(6px); }
+.project h3 a { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .5s var(--ease); }
+.project:hover h3 a { background-size: 100% 1px; }
+.pager a, footer a { background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; text-decoration: none; transition: background-size .45s var(--ease); }
+.pager a:hover, footer a:hover { background-size: 0 1px; background-position: 100% 100%; }
+
+/* chips */
+.tags li { transition: transform .35s var(--ease), background-color .35s var(--ease); }
+.tags li:hover { transform: translateY(-2px); }
+
+/* scroll progress (case pages) */
+.progress { position: fixed; inset: 0 0 auto 0; height: 2px; background: var(--ink); transform: scaleX(var(--p, 0)); transform-origin: 0 50%; z-index: 50; pointer-events: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* entrance: sections rise and fade as they enter the viewport */
+  .js :is(.hero .intro, .project, .initiatives, .cv-intro, .cv-row, .block, .full, .row, .closing, .pager, footer) {
+    transition: opacity 1s var(--ease) var(--d, 0ms), transform 1s var(--ease) var(--d, 0ms);
+  }
+  .js :is(.hero .intro, .project, .initiatives, .cv-intro, .cv-row, .block, .full, .row, .closing, .pager, footer):not(.in) {
+    opacity: 0;
+    transform: translateY(34px);
+  }
+
+  /* images settle in with a slow zoom-out; gentle zoom on hover */
+  .shot img, .shot video { transition: transform 1.6s var(--ease); }
+  .js :is(.project, .block, .full, .row):not(.in) .shot img { transform: scale(1.1); }
+  .project:hover .shot img { transform: scale(1.035); transition-duration: 1.1s; }
+
+  /* headline: words rise out of a mask */
+  .js h1 .wm { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .14em; margin-bottom: -.14em; }
+  .js h1 .w { display: inline-block; transform: translateY(105%); animation: wordUp 1s var(--ease) both; animation-delay: calc(var(--i) * 80ms + 120ms); }
+  @keyframes wordUp { to { transform: none; } }
+
+  /* top bar */
+  .js nav, .js .top { animation: fadeDown .9s var(--ease) both; }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-10px); } }
+}
+
+@media (prefers-reduced-motion: reduce) { .progress { display: none; } }
+
+/* safety net: if scripts fail, show everything */
+.reveal-all :is(.hero .intro, .project, .initiatives, .cv-intro, .cv-row, .block, .full, .row, .closing, .pager, footer),
+.reveal-all h1 .w { opacity: 1 !important; transform: none !important; animation: none !important; }
+
+/* print / PDF: never hide content */
+@media print {
+  .js :is(.hero .intro, .project, .initiatives, .cv-intro, .cv-row, .block, .full, .row, .closing, .pager, footer),
+  .js h1 .w { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; }
+  .progress { display: none !important; }
+}
