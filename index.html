@@ -5,6 +5,19 @@
 <script>document.documentElement.classList.add("js");setTimeout(function(){if(!window.__motion)document.documentElement.classList.add("reveal-all")},3500)</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gali Sharabani - Product Design Lead</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Gali Sharabani">
+<meta property="og:title" content="Gali Sharabani - Product Design Lead">
+<meta property="og:description" content="Product design leader with 15+ years of experience shaping digital products, from product strategy to execution.">
+<meta property="og:url" content="https://gsharabani.github.io/portfolio/">
+<meta property="og:image" content="https://gsharabani.github.io/portfolio/assets/og/index.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Gali Sharabani - Product Design Lead">
+<meta name="twitter:description" content="Product design leader with 15+ years of experience shaping digital products, from product strategy to execution.">
+<meta name="twitter:image" content="https://gsharabani.github.io/portfolio/assets/og/index.png">
+<link rel="canonical" href="https://gsharabani.github.io/portfolio/">
 <meta name="description" content="Product design leader with 15+ years of experience shaping digital products, from product strategy to execution.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -291,6 +304,15 @@ footer { margin-top: 96px; }
   .tags li { font-size: 9pt; padding: 2pt 7pt; }
   .plain p { font-size: 10pt; }
 }
+
+/* Download CV button */
+.cv-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 28px; }
+.cv-head h2.section { margin: 0; }
+.btn-dl { display: inline-flex; align-items: center; gap: 10px; padding: 12px 22px; border-radius: 999px; background: var(--ink); color: var(--bg); font-weight: 500; font-size: 16px; text-decoration: none; transition: transform .4s var(--ease, ease), box-shadow .4s var(--ease, ease); }
+.btn-dl span { display: inline-block; transition: transform .4s var(--ease, ease); }
+.btn-dl:hover, .btn-dl:focus-visible { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+.btn-dl:hover span, .btn-dl:focus-visible span { transform: translateY(3px); }
+@media print { .btn-dl { display: none !important; } }
 </style>
 <link rel="stylesheet" href="motion.css">
 <script src="motion.js" defer></script>
@@ -386,7 +408,7 @@ footer { margin-top: 96px; }
         <p class="ph-title">Product Design Lead</p>
         <p class="ph-contact">Israel · g.sharabani@gmail.com · linkedin.com/in/gali-sharabani-26747218</p>
       </div>
-      <h2 class="section" id="cv-title">CV</h2>
+      <div class="cv-head"><h2 class="section" id="cv-title">CV</h2><a class="btn-dl" href="Gali_Sharabani_CV.pdf" download="Gali_Sharabani_CV.pdf">Download CV <span aria-hidden="true">↓</span></a></div>
       <p class="cv-intro">Experienced across startups, enterprise organizations, and consulting environments.</p>
 
       <div class="cv-row cv-exp">
