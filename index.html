@@ -254,6 +254,42 @@ footer { margin-top: 96px; }
 .cv-row > h4 { font-size: 17px; padding-top: 3px; }
 .job .role { color: var(--ink); }
 @media (max-width: 860px) { .yrs-col { font-size: 15px; } .cv-row > h4 { font-size: 16px; } }
+
+/* Designit role titles: same treatment as the Healthee role line */
+.role-title { font-size: var(--fs-body); font-weight: 400; color: var(--ink); margin: 4px 0 12px; line-height: 1.45; }
+
+/* ===== Print / PDF: CV only ===== */
+.print-head { display: none; }
+@page { size: A4; margin: 14mm 16mm; }
+@media print {
+  :root { --fs-body: 10.5pt; }
+  body { font-size: 10.5pt; line-height: 1.4; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  nav, footer, #view-work, .rule { display: none !important; }
+  #view-cv[hidden] { display: block !important; }
+  .wrap { max-width: none; padding: 0; }
+  .print-head { display: block; margin: 0 0 14pt; }
+  .print-head p { margin: 0; }
+  .ph-name { font-size: 26pt; line-height: 1.05; letter-spacing: -0.03em; }
+  .ph-title { font-size: 13pt; margin-top: 4pt !important; color: #333; }
+  .ph-contact { font-size: 9.5pt; color: #555; margin-top: 8pt !important; }
+  #cv { padding-top: 0; }
+  #cv-title { display: none; }
+  .cv-intro { font-size: 12pt; margin: 0 0 12pt; max-width: none; }
+  .cv-row { padding: 10pt 0; gap: 12pt; grid-template-columns: 110pt 1fr; }
+  .cv-exp { grid-template-columns: 1fr; gap: 8pt; }
+  .cv-row > h4 { font-size: 9.5pt; }
+  .job { grid-template-columns: 110pt 1fr; gap: 12pt; margin-bottom: 12pt; break-inside: avoid; }
+  .job.tight { margin-bottom: 4pt; }
+  .job.sub { margin-bottom: 8pt; }
+  .yrs-col { font-size: 9pt; padding-top: 2pt; }
+  .company { font-size: 12.5pt; }
+  .role-title, .job .role { font-size: 10.5pt; margin: 2pt 0 4pt; }
+  .job ul { margin: 4pt 0 0; padding-left: 14pt; }
+  .job li { margin-bottom: 3pt; font-size: 10pt; max-width: none; }
+  .clients { font-size: 10pt; margin-top: 6pt; }
+  .tags li { font-size: 9pt; padding: 2pt 7pt; }
+  .plain p { font-size: 10pt; }
+}
 </style>
 </head>
 <body>
@@ -342,6 +378,11 @@ footer { margin-top: 96px; }
   <div id="view-cv" hidden>
   <main>
     <section id="cv" aria-labelledby="cv-title">
+      <div class="print-head">
+        <p class="ph-name">Gali Sharabani</p>
+        <p class="ph-title">Product Design Lead</p>
+        <p class="ph-contact">Israel · g.sharabani@gmail.com · linkedin.com/in/gali-sharabani-26747218</p>
+      </div>
       <h2 class="section" id="cv-title">CV</h2>
       <p class="cv-intro">Experienced across startups, enterprise organizations, and consulting environments.</p>
 
@@ -359,12 +400,12 @@ footer { margin-top: 96px; }
                 <li>Applied user research and product performance insights to identify opportunities, validate design solutions, and continuously improve key product experiences.</li>
                 <li>Partnered with Sales to translate the product roadmap into tailored, interactive demos for prospective customers, using AI-powered, code-based prototypes to bring planned capabilities to life.</li>
                 <li>Collaborated with Product and Engineering leadership on product direction, priorities, and execution, translating business objectives and user needs into effective product experiences.</li>
-                <li>Provided design leadership across the team, driving design quality, leading design reviews, guiding designers through complex challenges, and owning critical cross-team initiatives.</li>
+                <li>Helped guide and develop the design team, driving design quality, leading design reviews, supporting designers through complex challenges, and owning critical cross-team initiatives.</li>
               </ul>
             </div>
           </div>
           <div class="job tight">
-            <p class="yrs-col">Dec 2017 – Sep 2024</p>
+            <p class="yrs-col">Nov 2017 – Sep 2024</p>
             <div class="job-main"><p class="company">Designit</p></div>
           </div>
           <div class="job sub">
@@ -399,7 +440,7 @@ footer { margin-top: 96px; }
             </div>
           </div>
           <div class="job sub">
-            <p class="yrs-col">Dec 2017 – Jun 2018</p>
+            <p class="yrs-col">Nov 2017 – Jun 2018</p>
             <div class="job-main">
               <p class="role-title">Product designer</p>
               <ul>
@@ -433,7 +474,7 @@ footer { margin-top: 96px; }
       <div class="cv-row">
         <h4>Teaching</h4>
         <div class="plain">
-          <p>Shenkar College of Engineering and Design</p>
+          <p>Shenkar College of Engineering and Design · 2023 – 2024</p>
           <p class="sub">Lecturer, product design · Visual Communication Department</p>
         </div>
       </div>
