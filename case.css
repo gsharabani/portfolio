@@ -6,9 +6,6 @@
   --bg: #ffffff; --ink: #111; --muted: #55555a; --line: #111;
   --chip: #e9e9e7; --shot: #ececea; --hl: #f3f36b; --gutter: 56px;
 }
-@media (prefers-color-scheme: dark) {
-  :root { --bg:#121212; --ink:#f2f2f0; --muted:#a3a3a8; --line:#f2f2f0; --chip:#26262a; --shot:#1e1e21; --hl:#6b6b1f; }
-}
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Founders Grotesk", Inter, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif; font-size: calc(18px + 2pt); line-height: 1.5; -webkit-font-smoothing: antialiased; }
